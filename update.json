@@ -1,0 +1,10 @@
+{
+  "homepage": "https://www.curseforge.com/minecraft/mc-mods/jei-enchantment-info",
+  "1.16.1": {
+    "1.0.0": "Changelog: https://github.com/Phylogeny/JEIEnchantmentInfo/blob/1.16.1/CHANGELOG.md"
+  },
+  "promos": {
+    "1.16.1-latest": "1.0.0",
+    "1.16.1-recommended": "1.0.0"
+  }
+}

@@ -1,0 +1,37 @@
+modLoader="javafml"
+loaderVersion="[31,)"
+logoFile="logo.png"
+[[mods]]
+    modId="jeienchantmentinfo"
+    version="${version}"
+    displayName="JEI Enchantment Info"
+	description='''
+This mod adds a JEI info entry for every enchantment that has a lang file description entry.
+
+Format:  "enchantment.[MOD_ID].[ENCHENTMENT_REGISTRY_NAME].description": "[DESCRIPTION]"
+
+Example: "enchantment.jeienchantmentinfo.fire_protection.description": "Reduces fire damage and burn time."
+'''
+	issueTrackerURL="https://github.com/Phylogeny/JEIEnchantmentInfo/issues"
+	displayURL="https://www.curseforge.com/minecraft/mc-mods/jei-enchantment-info"
+	updateJSONURL="https://github.com/Phylogeny/JEIEnchantmentInfo/raw/1.16.1/update.json"
+	credits="Descriptions for vanilla enchantments are from the 'Enchanting' page of the Official Minecraft Wiki: https://minecraft.gamepedia.com/Enchanting#Summary_of_enchantments"
+	authors="Phylogeny"
+[[dependencies.jeienchantmentinfo]]
+    modId="forge"
+    mandatory=true
+    versionRange="[31,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.jeienchantmentinfo]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.15,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.jeienchantmentinfo]]
+    modId="jei"
+    mandatory=true
+    versionRange="[6,)"
+    ordering="AFTER"
+    side="CLIENT"
