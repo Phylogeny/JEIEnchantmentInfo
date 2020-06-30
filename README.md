@@ -3,4 +3,5 @@
 <p>This mod adds a JEI info entry for every enchantment that has a lang file description entry. Press R while hovering over a book with a single enchantment to view info about it.
 <br><br>The enchantment description lang entry format is that same as its name format plus ".description":
 <br><br>Lang Entry Format: <code>"enchantment.[MOD_ID].[ENCHENTMENT_REGISTRY_NAME].description": "[DESCRIPTION]"</code>
-<br><br>Example: <code>"enchantment.jeienchantmentinfo.fire_protection.description": "Reduces fire damage and burn time."</code></p>
+<br><br>Example: <code>"enchantment.jeienchantmentinfo.fire_protection.description": "Reduces fire damage and burn time."</code>
+<br><br>Example Lang File: <a href="https://github.com/Phylogeny/DiscernmentEnchant/blob/1.16.1/src/main/resources/assets/discernmentenchant/lang/en_us.json">'Discernment Enchant' mod's lang file</a></p>
