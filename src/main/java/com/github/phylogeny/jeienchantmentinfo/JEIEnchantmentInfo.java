@@ -34,11 +34,11 @@ public class JEIEnchantmentInfo implements IModPlugin
     @Override
     public void registerRecipes(IRecipeRegistration registration)
     {
-        String missingDescription = I18n.format(getEnchantmentKey(MOD_ID, "missing_description"));
-        String conflictsTitle = "\n" + I18n.format(getEnchantmentKey(MOD_ID, "conflicts"));
-        String maxLevelKey = getEnchantmentKey(MOD_ID, "max_level");
-        String typeKey = getEnchantmentKey(MOD_ID, "type");
-        String typeKeyPrefix = getEnchantmentKey(MOD_ID, "type") + ".";
+        String missingDescription = I18n.format(getLangKey("missing_description"));
+        String conflictsTitle = "\n" + I18n.format(getLangKey("conflicts"));
+        String maxLevelKey = getLangKey("max_level");
+        String typeKey = getLangKey("type");
+        String typeKeyPrefix = getLangKey("type") + ".";
         ForgeRegistries.ENCHANTMENTS.getValues().forEach(enchantment ->
         {
             String enchantmentKey = enchantment.getName();
@@ -69,8 +69,8 @@ public class JEIEnchantmentInfo implements IModPlugin
         });
     }
 
-    private String getEnchantmentKey(String namespace, String name)
+    private String getLangKey(String name)
     {
-        return String.join(".", "enchantment", namespace, name);
+        return String.join(".", "enchantment", MOD_ID, name);
     }
 }
