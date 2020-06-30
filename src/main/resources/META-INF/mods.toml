@@ -16,13 +16,13 @@ logoFile="logo.png"
     mandatory=true
     versionRange="[31,)"
     ordering="NONE"
-    side="BOTH"
+    side="CLIENT"
 [[dependencies.jeienchantmentinfo]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.15,)"
     ordering="NONE"
-    side="BOTH"
+    side="CLIENT"
 [[dependencies.jeienchantmentinfo]]
     modId="jei"
     mandatory=true
