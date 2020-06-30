@@ -6,7 +6,6 @@ import mezz.jei.api.constants.ModIds;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
@@ -16,8 +15,9 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @JeiPlugin
 @Mod(JEIEnchantmentInfo.MOD_ID)
@@ -39,40 +39,32 @@ public class JEIEnchantmentInfo implements IModPlugin
         String maxLevelKey = getEnchantmentKey(MOD_ID, "max_level");
         String typeKey = getEnchantmentKey(MOD_ID, "type");
         String typeKeyPrefix = getEnchantmentKey(MOD_ID, "type") + ".";
-        ForgeRegistries.ENCHANTMENTS.getEntries().forEach(entry ->
+        ForgeRegistries.ENCHANTMENTS.getValues().forEach(enchantment ->
         {
-            ResourceLocation key = entry.getKey();
-            String namespace = key.getNamespace().equals(ModIds.MINECRAFT_ID) ? MOD_ID : key.getNamespace();
-            String translationKey = getEnchantmentKey(namespace, key.getPath()) + ".description";
-            String description = I18n.format(translationKey).replace("Format error: ", "");
-            if (translationKey.equals(description))
+            String enchantmentKey = enchantment.getName();
+            String descriptionKey = enchantmentKey.replace("." + ModIds.MINECRAFT_ID + ".", "." + MOD_ID + ".") + ".description";
+            String description = I18n.format(descriptionKey).replace("Format error: ", "");
+            if (descriptionKey.equals(description))
                 description = missingDescription;
 
-            Enchantment enchantment = entry.getValue();
-            description = TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + I18n.format(enchantment.getName()) + TextFormatting.RESET + "\n" + description;
+            description = TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + I18n.format(enchantmentKey) + TextFormatting.RESET + "\n" + description;
             description += "\n" + I18n.format(typeKey, I18n.format(typeKeyPrefix + enchantment.type.name().toLowerCase()));
             int maxLevel = enchantment.getMaxLevel();
             description += "\n" + I18n.format(maxLevelKey, maxLevel);
             StringBuilder conflictBuilder = new StringBuilder();
-            ForgeRegistries.ENCHANTMENTS.getEntries().forEach(entry2 ->
-            {
-                Enchantment enchantment2 = entry2.getValue();
-                if (enchantment == enchantment2 || enchantment.isCompatibleWith(enchantment2))
-                    return;
-
-                conflictBuilder.append("\n-").append(I18n.format(enchantment2.getName()));
-            });
+            ForgeRegistries.ENCHANTMENTS.getValues().stream()
+                    .filter(enchantment2 -> enchantment != enchantment2 && !enchantment.isCompatibleWith(enchantment2))
+                    .forEach(enchantment2 -> conflictBuilder.append("\n-").append(I18n.format(enchantment2.getName())));
             String conflicts = conflictBuilder.toString();
             if (!conflicts.isEmpty())
                 description += conflictsTitle + conflicts;
 
-            List<ItemStack> books = new ArrayList<>();
-            for (int i = 0; i < maxLevel; i++)
+            List<ItemStack> books = IntStream.range(1, maxLevel + 1).mapToObj(i ->
             {
                 ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
-                EnchantedBookItem.addEnchantment(book, new EnchantmentData(enchantment, i + 1));
-                books.add(book);
-            }
+                EnchantedBookItem.addEnchantment(book, new EnchantmentData(enchantment, i));
+                return book;
+            }).collect(Collectors.toList());
             registration.addIngredientInfo(books, VanillaTypes.ITEM, description);
         });
     }
