@@ -5,13 +5,7 @@ logoFile="logo.png"
     modId="jeienchantmentinfo"
     version="${version}"
     displayName="JEI Enchantment Info"
-	description='''
-This mod adds a JEI info entry for every enchantment that has a lang file description entry.
-
-Format:  "enchantment.[MOD_ID].[ENCHENTMENT_REGISTRY_NAME].description": "[DESCRIPTION]"
-
-Example: "enchantment.jeienchantmentinfo.fire_protection.description": "Reduces fire damage and burn time."
-'''
+	description="This mod adds JEI info entries for enchantments. Press R while hovering over a book with a single enchantment to view info about it."
 	issueTrackerURL="https://github.com/Phylogeny/JEIEnchantmentInfo/issues"
 	displayURL="https://www.curseforge.com/minecraft/mc-mods/jei-enchantment-info"
 	updateJSONURL="https://github.com/Phylogeny/JEIEnchantmentInfo/raw/1.16.1/update.json"
