@@ -38,7 +38,7 @@ public class JEIEnchantmentInfo implements IModPlugin
         String conflictsTitle = "\n" + I18n.format(getLangKey("conflicts"));
         String maxLevelKey = getLangKey("max_level");
         String typeKey = getLangKey("type");
-        String typeKeyPrefix = getLangKey("type") + ".";
+        String typeKeyPrefix = typeKey + ".";
         ForgeRegistries.ENCHANTMENTS.getValues().forEach(enchantment ->
         {
             String enchantmentKey = enchantment.getName();
