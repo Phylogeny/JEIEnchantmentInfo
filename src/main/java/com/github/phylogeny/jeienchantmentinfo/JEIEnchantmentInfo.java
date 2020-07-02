@@ -7,6 +7,7 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.enchantment.EnchantmentData;
+import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -15,6 +16,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -48,7 +50,60 @@ public class JEIEnchantmentInfo implements IModPlugin
                 description = missingDescription;
 
             description = TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + I18n.format(enchantmentKey) + TextFormatting.RESET + "\n" + description;
-            description += "\n" + I18n.format(typeKey, I18n.format(typeKeyPrefix + enchantment.type.name().toLowerCase()));
+            EnchantmentType type = enchantment.type;
+            List<String> types = new ArrayList<>();
+            if (type.name().equals("ALL") || type.canEnchantItem(Items.COMPASS))
+                types.add("vanishable");
+            else if (type.canEnchantItem(Items.SHIELD))
+                types.add("breakable");
+            else
+            {
+                if (type.canEnchantItem(Items.ELYTRA))
+                    types.add("wearable");
+                else
+                {
+                    boolean helmet = type.canEnchantItem(Items.IRON_HELMET);
+                    boolean chestplate = type.canEnchantItem(Items.IRON_CHESTPLATE);
+                    boolean leggings = type.canEnchantItem(Items.IRON_LEGGINGS);
+                    boolean boots = type.canEnchantItem(Items.IRON_BOOTS);
+                    if (helmet && chestplate && leggings && boots)
+                        types.add("armor");
+                    else
+                    {
+                        if (helmet)
+                            types.add("armor.helmet");
+
+                        if (chestplate)
+                            types.add("armor.chestplate");
+
+                        if (leggings)
+                            types.add("armor.leggings");
+
+                        if (boots)
+                            types.add("armor.boots");
+                    }
+                }
+                if (type.canEnchantItem(Items.IRON_SHOVEL))
+                    types.add("tool");
+                else if (type.canEnchantItem(Items.IRON_AXE))
+                    types.add("axe");
+
+                if (type.canEnchantItem(Items.IRON_SWORD))
+                    types.add("sword");
+
+                if (type.canEnchantItem(Items.FISHING_ROD))
+                    types.add("fishing_rod");
+
+                if (type.canEnchantItem(Items.TRIDENT))
+                    types.add("trident");
+
+                if (type.canEnchantItem(Items.BOW))
+                    types.add("bow");
+
+                if (type.canEnchantItem(Items.CROSSBOW))
+                    types.add("crossbow");
+            }
+            description += "\n" + I18n.format(typeKey, types.stream().map(suffix -> I18n.format(typeKeyPrefix + suffix)).collect(Collectors.joining(", ")));
             int maxLevel = enchantment.getMaxLevel();
             description += "\n" + I18n.format(maxLevelKey, maxLevel);
             StringBuilder conflictBuilder = new StringBuilder();
