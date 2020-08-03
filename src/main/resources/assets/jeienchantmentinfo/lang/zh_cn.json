@@ -1,6 +1,6 @@
 {
     "_comment": "附魔数据",
-    "enchantment.jeienchantmentinfo.missing_description": "——未提供附魔描述——\n（模组作者可以为条目添加描述；请参见“JEI附魔信息”模组的README文件）",
+    "enchantment.jeienchantmentinfo.missing_description": "——未提供附魔描述——\n（模组作者可以为条目添加描述；请参见“JEI附魔信息”模组的 README 文件）",
     "enchantment.jeienchantmentinfo.conflicts": "§4相斥附魔：§l",
     "enchantment.jeienchantmentinfo.max_level": "§1最高等级：%s",
     "enchantment.jeienchantmentinfo.type": "§2应用内容：§l%s",
@@ -23,8 +23,8 @@
     "enchantment.jeienchantmentinfo.type.vanishable": "武器、工具、可穿戴/可损坏物品",
 
     "_comment": "附魔描述",
-    "enchantment.jeienchantmentinfo.aqua_affinity.description": "Increases underwater mining speed.",
-    "enchantment.jeienchantmentinfo.bane_of_arthropods.description": "Increases damage and applies Slowness IV to arthropod mobs (spiders, cave spiders, silverfish, endermites & bees).",
+    "enchantment.jeienchantmentinfo.aqua_affinity.description": "加快在水下的挖掘速度。",
+    "enchantment.jeienchantmentinfo.bane_of_arthropods.description": "提高伤害并让节肢生物（蜘蛛、洞穴蜘蛛、蠹虫、末影螨以及蜜蜂）获得缓慢 IV。",
     "enchantment.jeienchantmentinfo.blast_protection.description": "Reduces explosion damage and knockback.",
     "enchantment.jeienchantmentinfo.channeling.description": "Trident \"channels\" a bolt of lightning during thunderstorms toward hit entities not obstructed by opaque blocks.",
     "enchantment.jeienchantmentinfo.binding_curse.description": "Except when in creative mode, items cannot be removed from armor slots except due to death or breaking.",
