@@ -59,6 +59,6 @@
     "enchantment.jeienchantmentinfo.smite.description": "增加对亡灵生物的伤害。",
     "enchantment.jeienchantmentinfo.soul_speed.description": "加快在灵魂沙和灵魂土上的移动速度。",
     "enchantment.jeienchantmentinfo.sweeping.description": "增加横扫攻击的伤害。",
-    "enchantment.jeienchantmentinfo.thorns.description": "反弹攻击者的部分伤害，at the cost of reducing durability with each proc.",
+    "enchantment.jeienchantmentinfo.thorns.description": "反弹攻击者的部分伤害，每次都会减少耐久度。",
     "enchantment.jeienchantmentinfo.unbreaking.description": "增加物品耐久。"
 }
