@@ -3,7 +3,7 @@
     "enchantment.jeienchantmentinfo.missing_description": "——未提供附魔描述——\n（模组作者可以在语言文件中为条目添加描述；请参见“JEI附魔信息”模组的 README 文件）",
     "enchantment.jeienchantmentinfo.conflicts": "§4相斥附魔：§l",
     "enchantment.jeienchantmentinfo.max_level": "§1最高等级：%s",
-    "enchantment.jeienchantmentinfo.type": "§2应用内容：§l%s",
+    "enchantment.jeienchantmentinfo.type": "§2应用对象：§l%s",
 
     "_comment": "附魔种类",
     "enchantment.jeienchantmentinfo.type.armor": "\n-盔甲",
@@ -26,7 +26,7 @@
     "enchantment.jeienchantmentinfo.aqua_affinity.description": "加快在水下的挖掘速度。",
     "enchantment.jeienchantmentinfo.bane_of_arthropods.description": "增加对节肢生物（蜘蛛、洞穴蜘蛛、蠹虫、末影螨以及蜜蜂）的伤害并对其施加缓慢 IV 的效果。",
     "enchantment.jeienchantmentinfo.blast_protection.description": "减少爆炸伤害以及击退距离。",
-    "enchantment.jeienchantmentinfo.channeling.description": "雷暴天气时，三叉戟将在未被不透明方块阻挡的被击中生物处生成闪电。",
+    "enchantment.jeienchantmentinfo.channeling.description": "雷暴天气时，三叉戟将在被击中生物处生成闪电，前提是该生物未被不透明方块阻挡。",
     "enchantment.jeienchantmentinfo.binding_curse.description": "在创造模式以外的情况下，除非玩家死亡或物品损坏，否则物品将不能被从盔甲槽中移除。",
     "enchantment.jeienchantmentinfo.vanishing_curse.description": "物品将在玩家死亡时消失。",
     "enchantment.jeienchantmentinfo.depth_strider.description": "加快在水下的移动速度。",
