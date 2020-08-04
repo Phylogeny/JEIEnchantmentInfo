@@ -11,5 +11,6 @@ assignees: ''
 ----------------------------------------------------------------------------
 After deleting this template, please provide the following information:
 * Forge Version
-* *If updating was not possible*; JEI Enchantment Info version
+* Just Enough Items version
+* JEI Enchantment Info version
 * *If the issue is a crash*; An external link to the crash report
