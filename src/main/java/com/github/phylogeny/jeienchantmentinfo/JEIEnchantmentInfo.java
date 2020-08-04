@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -41,11 +42,15 @@ public class JEIEnchantmentInfo implements IModPlugin
         String maxLevelKey = getLangKey("max_level");
         String typeKey = getLangKey("type");
         String typeKeyPrefix = typeKey + ".";
+        boolean escapePercents = ModList.get().getModContainerById(ModIds.MINECRAFT_ID).get().getModInfo().getVersion().getMinorVersion() == 15;
         ForgeRegistries.ENCHANTMENTS.getValues().forEach(enchantment ->
         {
             String enchantmentKey = enchantment.getName();
             String descriptionKey = enchantmentKey.replace("." + ModIds.MINECRAFT_ID + ".", "." + MOD_ID + ".") + ".description";
-            String description = I18n.format(descriptionKey).replace("Format error: ", "");
+            String description = I18n.format(descriptionKey);
+            if (escapePercents)
+                description = description.replace("%", "%%");
+
             if (descriptionKey.equals(description))
                 description = missingDescription;
 
