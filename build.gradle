@@ -9,7 +9,6 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
-
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
@@ -19,8 +18,10 @@ archivesBaseName = 'JEIEnchantmentInfo'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = JavaVersion.VERSION_1_8
 
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'snapshot', version: '20200514-1.16'
+    mappings channel: 'snapshot', version: '20201028-1.16.3'
+
     runs {
         client {
             workingDirectory project.file('run')
@@ -50,8 +51,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-
-            args '--mod', 'jeienchantmentinfo', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'jeienchantmentinfo', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
                 jeienchantmentinfo {
@@ -61,6 +61,8 @@ minecraft {
         }
     }
 }
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
@@ -88,6 +90,7 @@ jar {
 }
 
 jar.finalizedBy('reobfJar')
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -102,6 +105,8 @@ publishing {
 }
 
 processResources {
+    inputs.property 'version', project.version
+
     from(sourceSets.main.resources.srcDirs) {
         include 'META-INF/mods.toml'
         expand 'version':project.version
