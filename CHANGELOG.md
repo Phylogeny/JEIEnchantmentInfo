@@ -1,6 +1,10 @@
 # JEI Enchantment Info Changelog
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 12-28-2020
+### Added
+- Missing license info, making the mod additionally 1.16.3-4 compatible
+
 ## [1.2.0] - 8-4-2020
 ### Added
 - Chinese (Simplified) localization added by WuzgXY-GitHub with assistance from Determancer and TUsama
