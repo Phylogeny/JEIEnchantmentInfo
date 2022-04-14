@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -38,7 +39,7 @@ public class JEIEnchantmentInfo implements IModPlugin
     @Override
     public void registerRecipes(IRecipeRegistration registration)
     {
-        String missingDescription = I18n.get(getLangKey("missing_description"));
+        String missingDescription = I18n.get(getLangKey("missing_desc"));
         String conflictsTitle = "\n" + I18n.get(getLangKey("conflicts"));
         String maxLevelKey = getLangKey("max_level");
         String typeKey = getLangKey("type");
@@ -47,14 +48,20 @@ public class JEIEnchantmentInfo implements IModPlugin
         ForgeRegistries.ENCHANTMENTS.getValues().forEach(enchantment ->
         {
             String enchantmentKey = enchantment.getDescriptionId();
-            String descriptionKey = enchantmentKey.replace("." + ModIds.MINECRAFT_ID + ".", "." + MOD_ID + ".") + ".description";
-            String description = I18n.get(descriptionKey);
-            if (escapePercents)
-                description = description.replace("%", "%%");
+            String description = missingDescription;
+            for (String suffix : Arrays.asList("desc", "description"))
+            {
+                String descriptionKey = enchantmentKey.replace("." + ModIds.MINECRAFT_ID + ".", "." + MOD_ID + ".") + "." + suffix;
+                String descriptionTemp = I18n.get(descriptionKey);
+                if (escapePercents)
+                    descriptionTemp = descriptionTemp.replace("%", "%%");
 
-            if (descriptionKey.equals(description))
-                description = missingDescription;
-
+                if (!descriptionKey.equals(descriptionTemp))
+                {
+                    description = descriptionTemp;
+                    break;
+                }
+            }
             description = ChatFormatting.BOLD + "" + ChatFormatting.UNDERLINE + I18n.get(enchantmentKey) + ChatFormatting.RESET + "\n" + description;
             EnchantmentCategory type = enchantment.category;
             List<String> types = new ArrayList<>();
