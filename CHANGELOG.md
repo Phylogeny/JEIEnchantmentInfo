@@ -1,6 +1,12 @@
 # JEI Enchantment Info Changelog
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 4-14-2022
+### Changed
+- Updated to Forge 1.16.5-36.2.33
+### Added
+- ".desc" as a valid suffix to increase mod compatibility
+
 ## [1.2.1] - 12-28-2020
 ### Added
 - Missing license info, making the mod additionally 1.16.3-4 compatible
