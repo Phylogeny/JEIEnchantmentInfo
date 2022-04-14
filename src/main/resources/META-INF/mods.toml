@@ -1,10 +1,10 @@
 modLoader="javafml"
-loaderVersion="[31,)"
+loaderVersion="[37,)"
 license="Public Domain"
 issueTrackerURL="https://github.com/Phylogeny/JEIEnchantmentInfo/issues"
 [[mods]]
     modId="jeienchantmentinfo"
-    version="${version}"
+    version="${file.jarVersion}"
     displayName="JEI Enchantment Info"
     description="This mod adds JEI info entries for enchantments. Press R while hovering over a book with a single enchantment to view info about it."
     displayURL="https://www.curseforge.com/minecraft/mc-mods/jei-enchantment-info"
@@ -15,18 +15,18 @@ issueTrackerURL="https://github.com/Phylogeny/JEIEnchantmentInfo/issues"
 [[dependencies.jeienchantmentinfo]]
     modId="forge"
     mandatory=true
-    versionRange="[31,)"
+    versionRange="[37,)"
     ordering="NONE"
     side="CLIENT"
 [[dependencies.jeienchantmentinfo]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15,)"
+    versionRange="[1.17,)"
     ordering="NONE"
     side="CLIENT"
 [[dependencies.jeienchantmentinfo]]
     modId="jei"
     mandatory=true
-    versionRange="[6,)"
+    versionRange="[8,)"
     ordering="AFTER"
     side="CLIENT"
