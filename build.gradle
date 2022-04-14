@@ -1,11 +1,10 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
-        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -16,7 +15,7 @@ version = minecraft_version + "-" + version
 group = 'com.github.phylogeny.jeienchantmentinfo'
 archivesBaseName = 'JEIEnchantmentInfo'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = JavaVersion.VERSION_1_8
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
@@ -67,7 +66,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     maven {
         name "Progwml6 maven"
-        url  "http://dvs1.progwml6.com/files/maven"
+        url  "https://dvs1.progwml6.com/files/maven"
     }
 }
 
@@ -101,18 +100,5 @@ publishing {
         maven {
             url "file:///${project.projectDir}/mcmodsrepo"
         }
-    }
-}
-
-processResources {
-    inputs.property 'version', project.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'META-INF/mods.toml'
-        expand 'version':project.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'META-INF/mods.toml'
     }
 }
