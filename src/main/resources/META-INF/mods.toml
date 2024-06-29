@@ -64,7 +64,7 @@ ordering="NONE"
 side="CLIENT"
 [[dependencies.${mod_id}]]
 modId="jei"
-mandatory=false
+mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
 versionRange="${jei_version_range}"
 ordering="AFTER"
