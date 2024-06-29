@@ -7,7 +7,8 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.LiteralContents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
@@ -133,7 +134,7 @@ public class JEIEnchantmentInfo implements IModPlugin
                 EnchantedBookItem.addEnchantment(book, new EnchantmentInstance(enchantment, i));
                 return book;
             }).collect(Collectors.toList());
-            registration.addIngredientInfo(books, VanillaTypes.ITEM, new TextComponent(description));
+            registration.addIngredientInfo(books, VanillaTypes.ITEM_STACK, MutableComponent.create(new LiteralContents(description)));
         });
     }
 
