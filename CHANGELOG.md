@@ -1,6 +1,11 @@
 # JEI Enchantment Info Changelog
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 6-28-2024
+### Changed
+- Ported to MC 1.19.4
+- Moved translation formatting error warnings from in-game to logs
+
 ## [2.0.0] - 4-14-2022
 ### Changed
 - Ported to MC 1.17.1 (compatible with MC 1.17.1 to 1.18.2)
