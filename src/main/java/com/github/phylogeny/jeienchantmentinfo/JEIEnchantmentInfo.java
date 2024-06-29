@@ -27,38 +27,32 @@ import java.util.stream.IntStream;
 
 @JeiPlugin
 @Mod(JEIEnchantmentInfo.MOD_ID)
-public class JEIEnchantmentInfo implements IModPlugin
-{
+public class JEIEnchantmentInfo implements IModPlugin {
     public static final String MOD_ID = "jeienchantmentinfo";
 
     @Override
-    public ResourceLocation getPluginUid()
-    {
+    public ResourceLocation getPluginUid() {
         return new ResourceLocation(MOD_ID, ModIds.JEI_ID);
     }
 
     @Override
-    public void registerRecipes(IRecipeRegistration registration)
-    {
+    public void registerRecipes(IRecipeRegistration registration) {
         String missingDescription = I18n.get(getLangKey("missing_desc"));
         String conflictsTitle = "\n" + I18n.get(getLangKey("conflicts"));
         String maxLevelKey = getLangKey("max_level");
         String typeKey = getLangKey("type");
         String typeKeyPrefix = typeKey + ".";
         boolean escapePercents = ModList.get().getModContainerById(ModIds.MINECRAFT_ID).get().getModInfo().getVersion().getMinorVersion() == 15;
-        ForgeRegistries.ENCHANTMENTS.getValues().forEach(enchantment ->
-        {
+        ForgeRegistries.ENCHANTMENTS.getValues().forEach(enchantment -> {
             String enchantmentKey = enchantment.getDescriptionId();
             String description = missingDescription;
-            for (String suffix : Arrays.asList("desc", "description"))
-            {
+            for (String suffix : Arrays.asList("desc", "description")) {
                 String descriptionKey = enchantmentKey.replace("." + ModIds.MINECRAFT_ID + ".", "." + MOD_ID + ".") + "." + suffix;
                 String descriptionTemp = I18n.get(descriptionKey);
                 if (escapePercents)
                     descriptionTemp = descriptionTemp.replace("%", "%%");
 
-                if (!descriptionKey.equals(descriptionTemp))
-                {
+                if (!descriptionKey.equals(descriptionTemp)) {
                     description = descriptionTemp;
                     break;
                 }
@@ -70,20 +64,17 @@ public class JEIEnchantmentInfo implements IModPlugin
                 types.add("vanishable");
             else if (type.canEnchant(Items.SHIELD))
                 types.add("breakable");
-            else
-            {
+            else {
                 if (type.canEnchant(Items.ELYTRA))
                     types.add("wearable");
-                else
-                {
+                else {
                     boolean helmet = type.canEnchant(Items.IRON_HELMET);
                     boolean chestplate = type.canEnchant(Items.IRON_CHESTPLATE);
                     boolean leggings = type.canEnchant(Items.IRON_LEGGINGS);
                     boolean boots = type.canEnchant(Items.IRON_BOOTS);
                     if (helmet && chestplate && leggings && boots)
                         types.add("armor");
-                    else
-                    {
+                    else {
                         if (helmet)
                             types.add("armor.helmet");
 
@@ -128,8 +119,7 @@ public class JEIEnchantmentInfo implements IModPlugin
             if (!conflicts.isEmpty())
                 description += conflictsTitle + conflicts;
 
-            List<ItemStack> books = IntStream.range(1, maxLevel + 1).mapToObj(i ->
-            {
+            List<ItemStack> books = IntStream.range(1, maxLevel + 1).mapToObj(i -> {
                 ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
                 EnchantedBookItem.addEnchantment(book, new EnchantmentInstance(enchantment, i));
                 return book;
