@@ -1,5 +1,6 @@
 package com.github.phylogeny.jeienchantmentinfo;
 
+import com.mojang.logging.LogUtils;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.ModIds;
@@ -18,6 +19,7 @@ import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +31,7 @@ import java.util.stream.IntStream;
 @Mod(JEIEnchantmentInfo.MOD_ID)
 public class JEIEnchantmentInfo implements IModPlugin {
     public static final String MOD_ID = "jeienchantmentinfo";
+    private static final Logger LOGGER = LogUtils.getLogger();
 
     @Override
     public ResourceLocation getPluginUid() {
@@ -53,6 +56,21 @@ public class JEIEnchantmentInfo implements IModPlugin {
                     descriptionTemp = descriptionTemp.replace("%", "%%");
 
                 if (!descriptionKey.equals(descriptionTemp)) {
+                    if (descriptionTemp.startsWith("Format error: ")) {
+                        descriptionTemp = descriptionTemp.substring(14);
+                        String warning = String.format("""
+                                        A formatting error occurred while getting the description for '%s'.
+                                        The lang key '%s' returned the following errant description string:
+                                        [%s]""",
+                                        enchantmentKey, descriptionKey, descriptionTemp);
+                        if (descriptionTemp.contains("%")) {
+                            warning += """
+
+                                    Since the description contains a '%' symbol, it's possible that it was not properly escaped.
+                                    Please ensure that all descriptions contain '%%', rather than '%'.""";
+                        }
+                        LOGGER.warn(warning);
+                    }
                     description = descriptionTemp;
                     break;
                 }
